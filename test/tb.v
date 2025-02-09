@@ -28,7 +28,7 @@ module tb ();
 `endif
 
   // Replace tt_um_example with your module name:
-  tt10_test_xander user_project (
+  tt11_um_obliviouX user_project (
 
       // Include power ports for the Gate Level test:
 `ifdef GL_TEST
