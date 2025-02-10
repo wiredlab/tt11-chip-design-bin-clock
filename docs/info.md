@@ -9,7 +9,7 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-This chip creates a 12 hour binary clock in base 60. The hour is coded in 4 bits (for up to 12 hours). The minute is coded in 6 bits (for up to 60 minutes). The meridiem (AM or PM) is coded in 1 bit (0 is AM, 1 is PM).
+This chip functions as a 12 hour binary clock in base 60. The hour is coded in 4 bits (for up to 12 hours). The minute is coded in 6 bits (for up to 60 minutes). The meridiem (AM or PM) is coded in 1 bit (0 is AM, 1 is PM).
 ```
 ----------------------------------
 Bit      | 32 16 8 4 2 1 | Decimal
@@ -25,4 +25,4 @@ Explain how to use your project
 
 ## External hardware
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+LEDs
