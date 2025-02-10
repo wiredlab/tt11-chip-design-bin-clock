@@ -1,8 +1,6 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
 
-# Tiny Tapeout Verilog Project Template
-
-- test commit -
+# Tiny Tapeout Verilog Binary Base 60 Clock
 
 - [Read the documentation for project](docs/info.md)
 
