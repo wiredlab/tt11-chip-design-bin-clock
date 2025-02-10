@@ -13,13 +13,13 @@
  *
  * The final design with the LEDs in place should look like this example:
  * ----------------------------------
- * Bit | Hours 	 Minutes 	 Meridiem
+ * Bit | Hours   Minutes   Meridiem
  * 32  |     	      1          
  * 16  |    	      0
- * 8 	 |  0 	      0
- * 4 	 |  1 	      1
- * 2 	 |  1 	      0         
- * 1 	 |  0 	      1          1
+ * 8   |  0 	      0
+ * 4   |  1 	      1
+ * 2   |  1 	      0         
+ * 1   |  0 	      1          1
  * ----------------------------------
  * Dec	  6 	 :    37         PM
  * 
