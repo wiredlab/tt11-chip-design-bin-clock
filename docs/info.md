@@ -25,4 +25,4 @@ Explain how to use your project
 
 ## External hardware
 
-LEDs
+LEDs, 1Hz clock connected to the _clk_ pin
