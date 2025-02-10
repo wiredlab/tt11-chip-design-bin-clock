@@ -12,16 +12,25 @@
  * There are not enough outputs available to include seconds
  *
  * The final design with the LEDs in place should look like this example:
- * --------------------------------
- * Bit  Hours 	 Minutes 	 Meridiem
- * 32 	     	      1          
- * 16 	    	      0
- * 8 	    0 	      0
- * 4 	    1 	      1
- * 2 	    1 	      0         
- * 1 	    0 	      1          1
- * --------------------------------
- * dec	  6 	 :    37         PM
+ * ----------------------------------
+ * Bit | Hours 	 Minutes 	 Meridiem
+ * 32  |     	      1          
+ * 16  |    	      0
+ * 8 	 |  0 	      0
+ * 4 	 |  1 	      1
+ * 2 	 |  1 	      0         
+ * 1 	 |  0 	      1          1
+ * ----------------------------------
+ * Dec	  6 	 :    37         PM
+ * 
+ * Or sideways:              
+ * ----------------------------------
+ * Bit      | 32 16 8 4 2 1 | Decimal
+ * ----------------------------------
+ * Hours    |       0 1 1 0 | 6
+ * Minutes  |  1  0 0 1 0 1 | 37
+ * Meridiem |             1 | PM
+ * ----------------------------------
  */
 
 `default_nettype none
