@@ -38,9 +38,12 @@ module tt11_um_obliviouX (
     .clk_i(clk),                // internal clock
     .rstn_i(rst_n),             // internal reset
 
-    .hour_id(ui_in[5:4]),       // hour increment/decrement
-    .minute_id(ui_in[3:2]),     // minute increment/decrement
-    .seconds_id(ui_in[1:0]),    // seconds increment/decrement
+    .time_set(ui_in[4]),       // switch to choose to set the time (=1) or let the clock run (=0)
+    .id_switch(ui_in[3]),      // switch to choose increment (=1) or decrement (=0)
+
+    .hour_id(ui_in[2]),       // hour increment/decrement
+    .minute_id(ui_in[1]),     // minute increment/decrement
+    .seconds_id(ui_in[0]),    // seconds increment/decrement
 
     .hour_out(uo_out[7:4]),                    // hour LED output, 4 LEDs
     .minute_out({uo_out[3:0], uio_out[7:6]}),  // minute LED output, 6 LEDs , this needs to be split between uo_out and uio_out
@@ -48,10 +51,14 @@ module tt11_um_obliviouX (
   );
 
   // All output pins must be assigned. If not used, assign to 0.
-  //assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
   assign uio_oe[7:0]  = 1; // want all the configurable IOs to be outputs
 
+  //assign hour_out = 11        // 1011
+  //assign minute_out = 30      // 0111 10
+  //assign seconds_out = 45     // 101101
+
+
   // List all unused inputs to prevent warnings
-  wire _unused = &{ena, clk, rst_n, 1'b0, uio_in, ui_in[7:6]};
+  wire _unused = &{ena, clk, rst_n, uio_in, ui_in[7:5], 1'b0};
 
 endmodule
