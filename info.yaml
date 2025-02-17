@@ -18,38 +18,39 @@ project:
   # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
   source_files:
     - "project.v"
+    - "tt_bin_clock.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
-  ui[0]: ""
-  ui[1]: ""
-  ui[2]: ""
-  ui[3]: ""
-  ui[4]: ""
+  ui[0]: "seconds_id[0]"
+  ui[1]: "minute_id[1]"
+  ui[2]: "hour_id[2]"
+  ui[3]: "id_switch[3]"
+  ui[4]: "time_set[4]"
   ui[5]: ""
   ui[6]: ""
   ui[7]: ""
 
   # Outputs
-  uo[0]: ""
-  uo[1]: ""
-  uo[2]: ""
-  uo[3]: ""
-  uo[4]: ""
-  uo[5]: ""
-  uo[6]: ""
-  uo[7]: ""
+  uo[0]: "hour_out[3]"
+  uo[1]: "hour_out[2]"
+  uo[2]: "hour_out[1]"
+  uo[3]: "hour_out[0]"
+  uo[4]: "minute_out[5]"
+  uo[5]: "minute_out[4]"
+  uo[6]: "minute_out[3]"
+  uo[7]: "minute_out[2]"
 
   # Bidirectional pins
-  uio[0]: ""
-  uio[1]: ""
-  uio[2]: ""
-  uio[3]: ""
-  uio[4]: ""
-  uio[5]: ""
-  uio[6]: ""
-  uio[7]: ""
+  uio[0]: "minute_out[1]"
+  uio[1]: "minute_out[0]"
+  uio[2]: "seconds_out[5]"
+  uio[3]: "seconds_out[4]"
+  uio[4]: "seconds_out[3]"
+  uio[5]: "seconds_out[2]"
+  uio[6]: "seconds_out[1]"
+  uio[7]: "seconds_out[0]"
 
 # Do not change!
 yaml_version: 6
