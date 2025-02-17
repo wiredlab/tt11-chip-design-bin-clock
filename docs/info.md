@@ -21,7 +21,7 @@ Meridiem |             1 | PM
 ```
 ## How to test
 
-Explain how to use your project
+Run test.py using cocotb
 
 ## External hardware
 
