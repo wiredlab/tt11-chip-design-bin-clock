@@ -34,12 +34,12 @@ module tt_um_obliviouX (
     input  wire       rst_n     // reset_n - low to reset
 );
 
-  tt_bin_clock bin_clock (      // internal sub module to make routing easier/more understandable
-    .clk_i(clk),                // internal clock
-    .rstn_i(rst_n),             // internal reset
+  tt_bin_clock bin_clock (    // internal sub module to make routing easier/more understandable
+    .clk_i(clk),              // internal clock
+    .rstn_i(!rst_n),          // internal reset
 
-    .time_set(ui_in[4]),       // switch to choose to set the time (=1) or let the clock run (=0)
-    .id_switch(ui_in[3]),      // switch to choose increment (=1) or decrement (=0)
+    .time_set(ui_in[4]),      // switch to choose to set the time (=1) or let the clock run (=0)
+    .id_switch(ui_in[3]),     // switch to choose increment (=1) or decrement (=0)
 
     .hour_id(ui_in[2]),       // hour increment/decrement
     .minute_id(ui_in[1]),     // minute increment/decrement
