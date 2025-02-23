@@ -53,11 +53,6 @@ module tt_um_obliviouX (
   // All output pins must be assigned. If not used, assign to 0.
   assign uio_oe[7:0]  = 1; // want all the configurable IOs to be outputs
 
-  //assign hour_out = 11        // 1011
-  //assign minute_out = 30      // 0111 10
-  //assign seconds_out = 45     // 101101
-
-
   // List all unused inputs to prevent warnings
   wire _unused = &{ena, clk, rst_n, uio_in, ui_in[7:5], 1'b0};
 
