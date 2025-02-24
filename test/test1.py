@@ -10,6 +10,8 @@
 #    assign minute_out = 30;      // 0111 10
 #    assign seconds_out = 45;     // 101101
 #
+# and then edit "Makefile" to use "test1" instead of "test" toward the bottom
+#
 
 import cocotb
 from cocotb.clock import Clock
