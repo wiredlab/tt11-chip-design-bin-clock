@@ -23,6 +23,8 @@ Meridiem |             1 | PM
 
 Run test.py using cocotb
 
+- passed test for internal module wire routing
+
 ## External hardware
 
 LEDs, 1Hz clock connected to the _clk_ pin
