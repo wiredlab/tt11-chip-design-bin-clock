@@ -17,17 +17,37 @@ module tt_bin_clock (
 
 );
 
-    reg[99:0] clk_cnt = 0;  // external clk is 100Hz, so need to count to 100 to output at 1Hz
-    reg[3:0] hours = 0;     // registers to hold time values
+    reg[7:0] clk_cnt = 0;  // external clk is 100Hz, so need to count to 100 to output at 1Hz
+    reg[3:0] hours = 0;    // registers to hold time values
     reg[5:0] minutes = 0;
     reg[5:0] seconds = 0;
 
-    always @(posedge reset_i) begin   // reset handler
-        if (reset_i) begin
+    always @(posedge clk_i or posedge reset_i) begin   
+        if (reset_i) begin  // reset handler
             clk_cnt <= 0;
             hours <= 0;
             minutes <= 0;
             seconds <= 0;
+        end
+        else if (!time_set) begin   // clock operation
+            if (clk_cnt == 99) begin
+                clk_cnt <= 0;
+                seconds <= seconds + 1;
+                if (seconds == 59) begin
+                    seconds <= 0;
+                    minutes <= minutes + 1;
+                    if (minutes == 59) begin
+                        minutes <= 0;
+                        hours <= hours + 1;
+                        if (hours == 13) begin
+                            hours <= 1;
+                        end
+                    end
+                end
+            end
+            else begin
+                clk_cnt <= clk_cnt + 1;
+            end
         end
     end
 
@@ -35,26 +55,46 @@ module tt_bin_clock (
         if (id_switch == 1) begin       // if increment chosen
             if (seconds_id == 1) begin
                 seconds <= seconds + 1;
+                if (seconds == 60) begin
+                    seconds <= 0;
+                end
             end
             else if (minute_id == 1) begin
                 minutes <= minutes + 1;
+                if (minutes == 60) begin
+                    minutes <= 0;
+                end
             end
             else if (hour_id == 1) begin
                 hours <= hours + 1;
+                if (hours == 13) begin
+                    hours <= 1;
+                end
             end
         else                            // if decrement chosen
             if (seconds_id == 1) begin
                 seconds <= seconds - 1;
+                if (seconds == -1) begin
+                    seconds <= 59;
+                end
             end
             else if (minute_id == 1) begin
                 minutes <= minutes - 1;
+                if (minutes == -1) begin
+                    minutes <= 59;
+                end
             end
             else if (hour_id == 1) begin
                 hours <= hours - 1;
+                if (hours == 0) begin
+                    hours <= 12;
+                end
             end
         end
     end
 
-endmodule
+    assign seconds_out = seconds;   // wires cannot be assigned inside an always block
+    assign minute_out = minutes;
+    assign hour_out = hours;
 
-//`default_nettype wire // unsure if this is needed
+endmodule
