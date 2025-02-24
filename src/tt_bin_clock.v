@@ -55,12 +55,6 @@ module tt_bin_clock (
         end
     end
 
-
-    // for testing
-    // assign hour_out = 11;        // 1011
-    // assign minute_out = 30;      // 0111 10
-    // assign seconds_out = 45;     // 101101
-
 endmodule
 
 //`default_nettype wire // unsure if this is needed
