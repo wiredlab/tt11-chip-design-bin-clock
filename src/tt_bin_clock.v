@@ -18,7 +18,7 @@ module tt_bin_clock (
 );
 
     reg[7:0] clk_cnt = -1;  // external clk is 100Hz, so need to count to 100 to output at 1Hz
-    reg[3:0] hours = 0;    // registers to hold time values
+    reg[3:0] hours = 0;     // registers to hold time values
     reg[5:0] minutes = 0;
     reg[5:0] seconds = 0;
 
@@ -51,7 +51,7 @@ module tt_bin_clock (
         end
     end
 
-    always @(posedge time_set) begin    // if switch to set time is on
+    always @(posedge clk_i or posedge time_set) begin    // if switch to set time is on
         if (id_switch == 1) begin       // if increment chosen
             if (seconds_id == 1) begin
                 seconds <= seconds + 1;
