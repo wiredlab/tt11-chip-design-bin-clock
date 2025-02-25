@@ -17,7 +17,7 @@ module tt_bin_clock (
 
 );
 
-    reg[7:0] clk_cnt = 0;  // external clk is 100Hz, so need to count to 100 to output at 1Hz
+    reg[7:0] clk_cnt = -1;  // external clk is 100Hz, so need to count to 100 to output at 1Hz
     reg[3:0] hours = 0;    // registers to hold time values
     reg[5:0] minutes = 0;
     reg[5:0] seconds = 0;
@@ -29,8 +29,8 @@ module tt_bin_clock (
             minutes <= 0;
             seconds <= 0;
         end
-        else if (!time_set) begin   // clock operation
-            if (clk_cnt == 99) begin
+        else if (!time_set) begin       // clock operation
+            if (clk_cnt == 99) begin    // every 100 clk cycles is one second
                 clk_cnt <= 0;
                 seconds <= seconds + 1;
                 if (seconds == 59) begin
