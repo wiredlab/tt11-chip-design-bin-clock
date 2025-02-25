@@ -29,7 +29,49 @@ module tt_bin_clock (
             minutes <= 0;
             seconds <= 0;
         end
-        else if (!time_set) begin       // clock operation
+        else if (time_set) begin
+            if (id_switch == 1) begin       // if increment chosen
+                if (seconds_id == 1) begin
+                    seconds <= seconds + 1;
+                    if (seconds == 60) begin
+                        seconds <= 0;
+                    end
+                end
+                else if (minute_id == 1) begin
+                    minutes <= minutes + 1;
+                    if (minutes == 60) begin
+                    minutes <= 0;
+                    end
+                end
+                else if (hour_id == 1) begin
+                    hours <= hours + 1;
+                    if (hours == 13) begin
+                        hours <= 1;
+                    end
+                end
+            else                            // if decrement chosen
+                if (seconds_id == 1) begin
+                    seconds <= seconds - 1;
+                    if (seconds == -1) begin
+                        seconds <= 59;
+                    end
+                end
+                else if (minute_id == 1) begin
+                    minutes <= minutes - 1;
+                    if (minutes == -1) begin
+                        minutes <= 59;
+                    end
+                end
+                else if (hour_id == 1) begin
+                    hours <= hours - 1;
+                    if (hours == 0) begin
+                        hours <= 12;
+                    end
+                end
+                clk_cnt <= -1;   // reset the clk_cnt to fully count one second
+            end
+        end
+        else begin       // clock operation
             if (clk_cnt == 99) begin    // every 100 clk cycles is one second
                 clk_cnt <= 0;
                 seconds <= seconds + 1;
@@ -51,47 +93,51 @@ module tt_bin_clock (
         end
     end
 
-    always @(posedge clk_i or posedge time_set) begin    // if switch to set time is on
-        if (id_switch == 1) begin       // if increment chosen
-            if (seconds_id == 1) begin
-                seconds <= seconds + 1;
-                if (seconds == 60) begin
-                    seconds <= 0;
-                end
-            end
-            else if (minute_id == 1) begin
-                minutes <= minutes + 1;
-                if (minutes == 60) begin
-                    minutes <= 0;
-                end
-            end
-            else if (hour_id == 1) begin
-                hours <= hours + 1;
-                if (hours == 13) begin
-                    hours <= 1;
-                end
-            end
-        else                            // if decrement chosen
-            if (seconds_id == 1) begin
-                seconds <= seconds - 1;
-                if (seconds == -1) begin
-                    seconds <= 59;
-                end
-            end
-            else if (minute_id == 1) begin
-                minutes <= minutes - 1;
-                if (minutes == -1) begin
-                    minutes <= 59;
-                end
-            end
-            else if (hour_id == 1) begin
-                hours <= hours - 1;
-                if (hours == 0) begin
-                    hours <= 12;
-                end
-            end
-        end
-    end
+//--------------------------------------------------------------------------------------------
+// test to get rid of gds error, moved this inside above always block
+//--------------------------------------------------------------------------------------------
+    // always @(posedge clk_i or posedge time_set) begin    // if switch to set time is on
+    //     if (id_switch == 1) begin       // if increment chosen
+    //         if (seconds_id == 1) begin
+    //             seconds <= seconds + 1;
+    //             if (seconds == 60) begin
+    //                 seconds <= 0;
+    //             end
+    //         end
+    //         else if (minute_id == 1) begin
+    //             minutes <= minutes + 1;
+    //             if (minutes == 60) begin
+    //                 minutes <= 0;
+    //             end
+    //         end
+    //         else if (hour_id == 1) begin
+    //             hours <= hours + 1;
+    //             if (hours == 13) begin
+    //                 hours <= 1;
+    //             end
+    //         end
+    //     else                            // if decrement chosen
+    //         if (seconds_id == 1) begin
+    //             seconds <= seconds - 1;
+    //             if (seconds == -1) begin
+    //                 seconds <= 59;
+    //             end
+    //         end
+    //         else if (minute_id == 1) begin
+    //             minutes <= minutes - 1;
+    //             if (minutes == -1) begin
+    //                 minutes <= 59;
+    //             end
+    //         end
+    //         else if (hour_id == 1) begin
+    //             hours <= hours - 1;
+    //             if (hours == 0) begin
+    //                 hours <= 12;
+    //             end
+    //         end
+    //         clk_cnt <= -1;   // reset the clk_cnt to fully count one second
+    //     end
+    // end
 
     assign seconds_out = seconds;   // wires cannot be assigned inside an always block
     assign minute_out = minutes;
