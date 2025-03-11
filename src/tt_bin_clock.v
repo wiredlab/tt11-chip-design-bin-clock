@@ -24,7 +24,7 @@ module tt_bin_clock (
 
     always @(posedge clk_i or posedge reset_i) begin   
         if (reset_i) begin  // reset handler
-            clk_cnt <= 0;
+            clk_cnt <= -1;
             hours <= 0;
             minutes <= 0;
             seconds <= 0;
@@ -68,10 +68,16 @@ module tt_bin_clock (
                         hours <= 12;
                     end
                 end
-                clk_cnt <= -1;   // reset the clk_cnt to fully count one second
             end
+            clk_cnt <= -1;   // reset the clk_cnt to fully count one second
         end
         else begin       // clock operation
+
+            // check one clock cycle ahead of time to be set the roll over hour in time
+            if ((clk_cnt == 98) && (hours == 12) && (minutes == 59) && (seconds == 59)) begin
+                hours <= 0;
+            end
+
             if (clk_cnt == 99) begin    // every 100 clk cycles is one second
                 clk_cnt <= 0;
                 seconds <= seconds + 1;
@@ -81,15 +87,13 @@ module tt_bin_clock (
                     if (minutes == 59) begin
                         minutes <= 0;
                         hours <= hours + 1;
-                        if (hours == 13) begin
-                            hours <= 1;
-                        end
                     end
                 end
             end
             else begin
                 clk_cnt <= clk_cnt + 1;
             end
+
         end
     end
 
