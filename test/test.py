@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 #
-# this is to test that the hours properly roll over as well as testing the incrementing function
+# this is to test that the hours properly roll over as well
 #
 
 import cocotb
