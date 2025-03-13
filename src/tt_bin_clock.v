@@ -73,7 +73,7 @@ module tt_bin_clock (
         end
         else begin       // clock operation
 
-            // check one clock cycle ahead of time to be set the roll over hour in time
+            // check one clock cycle ahead of time to set the roll over hour at the correct clk cycle
             if ((clk_cnt == 98) && (hours == 12) && (minutes == 59) && (seconds == 59)) begin
                 hours <= 0;
             end
