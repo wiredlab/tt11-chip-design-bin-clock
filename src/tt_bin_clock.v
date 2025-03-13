@@ -33,19 +33,19 @@ module tt_bin_clock (
             if (id_switch == 1) begin       // if increment chosen
                 if (seconds_id == 1) begin
                     seconds <= seconds + 1;
-                    if (seconds == 60) begin
+                    if (seconds == 59) begin
                         seconds <= 0;
                     end
                 end
                 else if (minute_id == 1) begin
                     minutes <= minutes + 1;
-                    if (minutes == 60) begin
+                    if (minutes == 59) begin
                     minutes <= 0;
                     end
                 end
                 else if (hour_id == 1) begin
                     hours <= hours + 1;
-                    if (hours == 13) begin
+                    if (hours == 12) begin
                         hours <= 1;
                     end
                 end
