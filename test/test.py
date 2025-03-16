@@ -39,67 +39,67 @@ async def test_project(dut):
     dut.ui_in[2].value = 0
     await ClockCycles(dut.clk, 1)
 
-    dut.ui_in[2].value = 1    # increment hour for 14 clock cycles, should rollover to 2:00:00
+    dut.ui_in[2].value = 1    
     await ClockCycles(dut.clk, 1)
     dut.ui_in[2].value = 0
     await ClockCycles(dut.clk, 1)
 
-    dut.ui_in[2].value = 1    # increment hour for 14 clock cycles, should rollover to 2:00:00
+    dut.ui_in[2].value = 1    
     await ClockCycles(dut.clk, 1)
     dut.ui_in[2].value = 0
     await ClockCycles(dut.clk, 1)
 
-    dut.ui_in[2].value = 1    # increment hour for 14 clock cycles, should rollover to 2:00:00
+    dut.ui_in[2].value = 1    
     await ClockCycles(dut.clk, 1)
     dut.ui_in[2].value = 0
     await ClockCycles(dut.clk, 1)
 
-    dut.ui_in[2].value = 1    # increment hour for 14 clock cycles, should rollover to 2:00:00
+    dut.ui_in[2].value = 1    
     await ClockCycles(dut.clk, 1)
     dut.ui_in[2].value = 0
     await ClockCycles(dut.clk, 1)
 
-    dut.ui_in[2].value = 1    # increment hour for 14 clock cycles, should rollover to 2:00:00
+    dut.ui_in[2].value = 1    
     await ClockCycles(dut.clk, 1)
     dut.ui_in[2].value = 0
     await ClockCycles(dut.clk, 1)
 
-    dut.ui_in[2].value = 1    # increment hour for 14 clock cycles, should rollover to 2:00:00
+    dut.ui_in[2].value = 1    
     await ClockCycles(dut.clk, 1)
     dut.ui_in[2].value = 0
     await ClockCycles(dut.clk, 1)
 
-    dut.ui_in[2].value = 1    # increment hour for 14 clock cycles, should rollover to 2:00:00
+    dut.ui_in[2].value = 1    
     await ClockCycles(dut.clk, 1)
     dut.ui_in[2].value = 0
     await ClockCycles(dut.clk, 1)
 
-    dut.ui_in[2].value = 1    # increment hour for 14 clock cycles, should rollover to 2:00:00
+    dut.ui_in[2].value = 1    
     await ClockCycles(dut.clk, 1)
     dut.ui_in[2].value = 0
     await ClockCycles(dut.clk, 1)
 
-    dut.ui_in[2].value = 1    # increment hour for 14 clock cycles, should rollover to 2:00:00
+    dut.ui_in[2].value = 1    
     await ClockCycles(dut.clk, 1)
     dut.ui_in[2].value = 0
     await ClockCycles(dut.clk, 1)
 
-    dut.ui_in[2].value = 1    # increment hour for 14 clock cycles, should rollover to 2:00:00
+    dut.ui_in[2].value = 1    
     await ClockCycles(dut.clk, 1)
     dut.ui_in[2].value = 0
     await ClockCycles(dut.clk, 1)
 
-    dut.ui_in[2].value = 1    # increment hour for 14 clock cycles, should rollover to 2:00:00
+    dut.ui_in[2].value = 1    
     await ClockCycles(dut.clk, 1)
     dut.ui_in[2].value = 0
     await ClockCycles(dut.clk, 1)
 
-    dut.ui_in[2].value = 1    # increment hour for 14 clock cycles, should rollover to 2:00:00
+    dut.ui_in[2].value = 1    
     await ClockCycles(dut.clk, 1)
     dut.ui_in[2].value = 0
     await ClockCycles(dut.clk, 1)
 
-    dut.ui_in[2].value = 1    # increment hour for 14 clock cycles, should rollover to 2:00:00
+    dut.ui_in[2].value = 1
     await ClockCycles(dut.clk, 1)
     dut.ui_in[2].value = 0
     await ClockCycles(dut.clk, 1)
