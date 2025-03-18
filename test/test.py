@@ -108,21 +108,21 @@ async def test_project(dut):
 
     #dut.ui_in[2].value = 1
     #await ClockCycles(dut.clk, 1)
-    #dut.ui_in[2].value = 0    # stop incrementing hour
+    #dut.ui_in[2].value = 0    # stop decrementing hour
 
     await ClockCycles(dut.clk, 1)
 
-    dut.ui_in[1].value = 1    # increment minutes for 82 clock cycles, should rollover to 2:22:00
+    dut.ui_in[1].value = 1    # decrement minutes for 82 clock cycles
     await ClockCycles(dut.clk, 82)
-    dut.ui_in[1].value = 0    # stop incrementing minutes
+    dut.ui_in[1].value = 0    # stop decrementing minutes
 
     await ClockCycles(dut.clk, 1)
 
-    dut.ui_in[0].value = 1    # increment seconds for 82 clock cycles, should rollover to 2:22:22
+    dut.ui_in[0].value = 1    # decrement seconds for 82 clock cycles
     await ClockCycles(dut.clk, 82)
-    dut.ui_in[0].value = 0    # stop incrementing seconds
+    dut.ui_in[0].value = 0    # stop decrementing seconds
 
-    # the clock is now set to 2:22:22
+    # the clock is now set
     await ClockCycles(dut.clk, 100)
 
     dut.ui_in[4].value = 0    # let the clock run
