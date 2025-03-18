@@ -49,22 +49,23 @@ module tt_bin_clock (
                         hours <= 1;
                     end
                 end
-            else                            // if decrement chosen
+            end
+            else if (id_switch == 0) begin                            // if decrement chosen
                 if (seconds_id == 1) begin
                     seconds <= seconds - 1;
-                    if (seconds == -1) begin
+                    if ((seconds == -1) || (seconds == 0)) begin
                         seconds <= 59;
                     end
                 end
                 else if (minute_id == 1) begin
                     minutes <= minutes - 1;
-                    if (minutes == -1) begin
+                    if ((minutes == -1) || (minutes == 0)) begin
                         minutes <= 59;
                     end
                 end
                 else if (hour_id == 1) begin
                     hours <= hours - 1;
-                    if (hours == 0) begin
+                    if ((hours == 1) || (hours == 0)) begin
                         hours <= 12;
                     end
                 end
