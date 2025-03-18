@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 #
-# this test checks that the increment function works correctly
+# this test checks that the decrement function works correctly
 # and checks that its rolls over correctly
 #
 
@@ -32,9 +32,9 @@ async def test_project(dut):
 
     # Set the input values you want to test
     dut.ui_in[4].value = 1    # set to 1 to change the time
-    dut.ui_in[3].value = 1    # set to 1 to increment
+    dut.ui_in[3].value = 0    # set to 0 to decrement
 
-    dut.ui_in[2].value = 1    # increment hour for 14 clock cycles, should rollover to 2:00:00
+    dut.ui_in[2].value = 1    # decrement hour for 14 clock cycles
     await ClockCycles(dut.clk, 1)
     dut.ui_in[2].value = 0
     await ClockCycles(dut.clk, 1)
