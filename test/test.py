@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 #
-# this is to test that the hours properly roll over as well
+# this test checks that the decrement function works correctly
+# and checks that its rolls over correctly
 #
 
 import cocotb
@@ -31,31 +32,102 @@ async def test_project(dut):
 
     # Set the input values you want to test
     dut.ui_in[4].value = 1    # set to 1 to change the time
-    dut.ui_in[3].value = 1    # set to 1 to increment
+    dut.ui_in[3].value = 0    # set to 0 to decrement
 
-    dut.ui_in[2].value = 1    # increment hour for 12 clock cycles
-    await ClockCycles(dut.clk, 12)
-    dut.ui_in[2].value = 0    # stop incrementing hour
+    dut.ui_in[2].value = 1    # decrement hour for 14 clock cycles
+    await ClockCycles(dut.clk, 1)
+    dut.ui_in[2].value = 0
+    await ClockCycles(dut.clk, 1)
+
+    dut.ui_in[2].value = 1    
+    await ClockCycles(dut.clk, 1)
+    dut.ui_in[2].value = 0
+    await ClockCycles(dut.clk, 1)
+
+    dut.ui_in[2].value = 1    
+    await ClockCycles(dut.clk, 1)
+    dut.ui_in[2].value = 0
+    await ClockCycles(dut.clk, 1)
+
+    dut.ui_in[2].value = 1    
+    await ClockCycles(dut.clk, 1)
+    dut.ui_in[2].value = 0
+    await ClockCycles(dut.clk, 1)
+
+    dut.ui_in[2].value = 1    
+    await ClockCycles(dut.clk, 1)
+    dut.ui_in[2].value = 0
+    await ClockCycles(dut.clk, 1)
+
+    dut.ui_in[2].value = 1    
+    await ClockCycles(dut.clk, 1)
+    dut.ui_in[2].value = 0
+    await ClockCycles(dut.clk, 1)
+
+    dut.ui_in[2].value = 1    
+    await ClockCycles(dut.clk, 1)
+    dut.ui_in[2].value = 0
+    await ClockCycles(dut.clk, 1)
+
+    dut.ui_in[2].value = 1    
+    await ClockCycles(dut.clk, 1)
+    dut.ui_in[2].value = 0
+    await ClockCycles(dut.clk, 1)
+
+    dut.ui_in[2].value = 1    
+    await ClockCycles(dut.clk, 1)
+    dut.ui_in[2].value = 0
+    await ClockCycles(dut.clk, 1)
+
+    dut.ui_in[2].value = 1    
+    await ClockCycles(dut.clk, 1)
+    dut.ui_in[2].value = 0
+    await ClockCycles(dut.clk, 1)
+
+    dut.ui_in[2].value = 1    
+    await ClockCycles(dut.clk, 1)
+    dut.ui_in[2].value = 0
+    await ClockCycles(dut.clk, 1)
+
+    dut.ui_in[2].value = 1    
+    await ClockCycles(dut.clk, 1)
+    dut.ui_in[2].value = 0
+    await ClockCycles(dut.clk, 1)
+
+    dut.ui_in[2].value = 1    
+    await ClockCycles(dut.clk, 1)
+    dut.ui_in[2].value = 0
+    await ClockCycles(dut.clk, 1)
+
+    dut.ui_in[2].value = 1
+    await ClockCycles(dut.clk, 1)
+    dut.ui_in[2].value = 0
+    await ClockCycles(dut.clk, 1)
+    
+
+
+    #dut.ui_in[2].value = 1
+    #await ClockCycles(dut.clk, 1)
+    #dut.ui_in[2].value = 0    # stop decrementing hour
 
     await ClockCycles(dut.clk, 1)
 
-    dut.ui_in[1].value = 1    # increment minutes for 59 clock cycles
-    await ClockCycles(dut.clk, 59)
-    dut.ui_in[1].value = 0    # stop incrementing minutes
+    dut.ui_in[1].value = 1    # decrement minutes for 82 clock cycles
+    await ClockCycles(dut.clk, 82)
+    dut.ui_in[1].value = 0    # stop decrementing minutes
 
     await ClockCycles(dut.clk, 1)
 
-    dut.ui_in[0].value = 1    # increment seconds for 50 clock cycles
-    await ClockCycles(dut.clk, 50)
-    dut.ui_in[0].value = 0    # stop incrementing seconds
+    dut.ui_in[0].value = 1    # decrement seconds for 82 clock cycles
+    await ClockCycles(dut.clk, 82)
+    dut.ui_in[0].value = 0    # stop decrementing seconds
 
-    # the clock is now set to 12:59:50
-    await ClockCycles(dut.clk, 1)
+    # the clock is now set
+    await ClockCycles(dut.clk, 100)
 
     dut.ui_in[4].value = 0    # let the clock run
 
-
-    await ClockCycles(dut.clk, 15000)   # run for 15
+    await ClockCycles(dut.clk, 1500)   # run for 15
 
     # The following assersion is just an example of how to check the output values.
     # Change it to match the actual expected output of your module:
