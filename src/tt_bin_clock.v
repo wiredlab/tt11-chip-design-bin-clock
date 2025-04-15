@@ -58,7 +58,7 @@ module tt_bin_clock (
                     end
                 end
             end
-            else if (id_switch == 0) begin                            // if decrement chosen
+            else if (id_switch == 0) begin     // if decrement chosen
                 if (seconds_id == 1 && !prev_seconds_id) begin
                     seconds <= seconds - 1;
                     if ((seconds == -1) || (seconds == 0)) begin
@@ -78,9 +78,11 @@ module tt_bin_clock (
                     end
                 end
             end
-            clk_cnt <= -1;   // reset the clk_cnt to fully count one second
-            
-            prev_seconds_id <= seconds_id;  // update previous registers for next clk cycle
+            // reset the clk_cnt to fully count one second
+            clk_cnt <= -1;   
+
+            // update previous registers for next clk cycle
+            prev_seconds_id <= seconds_id;  
             prev_minute_id <= minute_id;
             prev_hour_id <= hour_id;
         end
@@ -90,8 +92,9 @@ module tt_bin_clock (
             if ((clk_cnt == 98) && (hours == 12) && (minutes == 59) && (seconds == 59)) begin
                 hours <= 0;
             end
-
-            if (clk_cnt == 99) begin    // every 100 clk cycles is one second
+            
+            // every 100 clk cycles is one second
+            if (clk_cnt == 99) begin    
                 clk_cnt <= 0;
                 seconds <= seconds + 1;
                 if (seconds == 59) begin
@@ -109,8 +112,9 @@ module tt_bin_clock (
         
         end
     end
-
-    assign seconds_out = seconds;   // wires cannot be assigned inside an always block
+    
+    // wires cannot be assigned inside an always block
+    assign seconds_out = seconds;   
     assign minute_out = minutes;
     assign hour_out = hours;
 
