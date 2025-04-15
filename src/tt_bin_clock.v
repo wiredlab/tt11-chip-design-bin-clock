@@ -22,28 +22,36 @@ module tt_bin_clock (
     reg[5:0] minutes = 0;
     reg[5:0] seconds = 0;
 
+    // button state registers
+    reg prev_hour_id = 0;
+    reg prev_minute_id = 0;
+    reg prev_seconds_id = 0;
+    
     always @(posedge clk_i or posedge reset_i) begin   
         if (reset_i) begin  // reset handler
             clk_cnt <= -1;
             hours <= 0;
             minutes <= 0;
             seconds <= 0;
+            prev_hour_id <= 0;
+            prev_minute_id <= 0;
+            prev_seconds_id <= 0;
         end
         else if (time_set) begin
-            if (id_switch == 1) begin       // if increment chosen
-                if (seconds_id == 1) begin
+            if (id_switch) begin       // if increment chosen
+                if (seconds_id && !prev_seconds_id) begin
                     seconds <= seconds + 1;
                     if (seconds == 59) begin
                         seconds <= 0;
                     end
                 end
-                else if (minute_id == 1) begin
+                else if (minute_id && !prev_minute_id) begin
                     minutes <= minutes + 1;
                     if (minutes == 59) begin
                     minutes <= 0;
                     end
                 end
-                else if (hour_id == 1) begin
+                else if (hour_id && !prev_hour_id) begin
                     hours <= hours + 1;
                     if (hours == 12) begin
                         hours <= 1;
@@ -51,19 +59,19 @@ module tt_bin_clock (
                 end
             end
             else if (id_switch == 0) begin                            // if decrement chosen
-                if (seconds_id == 1) begin
+                if (seconds_id == 1 && !prev_seconds_id) begin
                     seconds <= seconds - 1;
                     if ((seconds == -1) || (seconds == 0)) begin
                         seconds <= 59;
                     end
                 end
-                else if (minute_id == 1) begin
+                else if (minute_id && !prev_minute_id) begin
                     minutes <= minutes - 1;
                     if ((minutes == -1) || (minutes == 0)) begin
                         minutes <= 59;
                     end
                 end
-                else if (hour_id == 1) begin
+                else if (hour_id && !prev_hour_id) begin
                     hours <= hours - 1;
                     if ((hours == 1) || (hours == 0)) begin
                         hours <= 12;
@@ -71,6 +79,10 @@ module tt_bin_clock (
                 end
             end
             clk_cnt <= -1;   // reset the clk_cnt to fully count one second
+            
+            prev_seconds_id <= seconds_id;  // update previous registers for next clk cycle
+            prev_minute_id <= minute_id;
+            prev_hour_id <= hour_id;
         end
         else begin       // clock operation
 
@@ -94,7 +106,7 @@ module tt_bin_clock (
             else begin
                 clk_cnt <= clk_cnt + 1;
             end
-
+        
         end
     end
 
