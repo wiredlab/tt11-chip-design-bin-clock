@@ -14,7 +14,6 @@ module tt_bin_clock (
     output wire [3:0] hour_out,      // 4 bits (for decimal 1-12)
     output wire [5:0] minute_out,    // 5 bits (for decimal 0-60)
     output wire [5:0] seconds_out    // 5 bits (for decimal 0-60)
-
 );
 
     reg[7:0] clk_cnt = -1;  // external clk is 100Hz, so need to count to 100 to output at 1Hz
@@ -109,7 +108,6 @@ module tt_bin_clock (
             else begin
                 clk_cnt <= clk_cnt + 1;
             end
-        
         end
     end
     
